@@ -1,6 +1,6 @@
 # Curso Spring Boot
 
-<nav>
+
 <!-- TOC -->
 
 - [Curso Spring Boot](#curso-spring-boot)
@@ -20,7 +20,7 @@
 - [Repository (acesso a dados)](#repository-acesso-a-dados)
 
 <!-- /TOC -->
-</nav>
+
 
 Este Curso visa introduzir o desenvolvimento de aplicações utilizando o Spring Boot.
 
