@@ -1,5 +1,8 @@
 # Curso Spring Boot
 
+<div style="position:fixed; top: 20px; left:20px;">
+[Subir](#curso-spring-boot)
+</div>
 
 <!-- TOC -->
 
@@ -28,8 +31,6 @@ Este Curso visa introduzir o desenvolvimento de aplicações utilizando o Spring
 
 O Spring Boot possui uma série de funcionalidades distintas que podem ser adicionadas a medida que o projeto ganha forma. O foco neste momento é exibir como criar uma aplicação RESTfull, onde chamamos notoriamente de **backend**. A outra parte, chamada de **frontend**, será vista em outro Curso. Em suma, o **backend** é responsável em fornecer um serviço web que pode ser chamado através de uma URL e responder o que foi requisitado em JSON.
 
-[Subir](#curso-spring-boot)
-
 # Preparando o ambiente
 
 O Spring Boot necessita dos seguintes itens:
@@ -49,8 +50,6 @@ O Spring Boot necessita dos seguintes itens:
 - A IDE que possui diversas facilidades para o desenvolvimento de aplicações Spring Boot. Usaremos o STS (*Spring Tool Suite*), que é um Eclipse modificado para o Spring Boot. O download dele está [aqui](https://spring.io/tools/sts). Basta fazer o download e executar o ".exe"
 
 Para o desenvolvimento apenas estes três itens são necessários. Com tudo isso instalado, podemos criar a nossa primeira aplicação.
-
-[Subir](#curso-spring-boot)
 
 # Banco de dados
 
@@ -92,8 +91,6 @@ Pode-se verificar a estrutura de uma tabela com o comando `desc Users;`
 # Criando o projeto
 
 Existem duas formas corretas de se criar um projeto Spring Boot. Você pode usar o Wizard do STS, ou então acessando o site [Spring Initializr](https://start.spring.io/).
-
-[Subir](#curso-spring-boot)
 
 ## Usando o STS
 
@@ -144,8 +141,6 @@ Clique no botão `Finish` para criar o projeto. Após a criação do projeto, o 
 <img src="https://i.imgur.com/tUPZDyc.png">
 </p>
 
-[Subir](#curso-spring-boot)
-
 ## Usando o Spring Initializr
 
 Acesse o site [Spring Initializr](https://start.spring.io/) para ter acesso a um formulário semelhante a figura a seguir:
@@ -172,8 +167,6 @@ Após adicionar as dependências, clique no botão `Generate Project` para reali
 
 Descompacte o arquivo `.zip` e use a opção `File > Open Project From File System` do STS. 
 
-[Subir](#curso-spring-boot)
-
 # Mapeamento
 
 Uma das funcionalidades básicas do Java, em conjunto com o JPA e o Hibernate, é mapear uma tabela do banco de dados, gerando uma classe Java que representa a tabela. 
@@ -195,8 +188,6 @@ public class User {
 
 }
 ```
-
-[Subir](#curso-spring-boot)
 
 ## Anotando a entidade
 
@@ -224,8 +215,6 @@ public class User {
 }
 ```
 
-[Subir](#curso-spring-boot)
-
 ## Definindo o nome da tabela
 
 Perceba que o nome da classe é diferente do nome da tabela, então devemos adicionar uma anotação para dizer qual é o nome da tabela. Neste caso usamos o `@Table`, veja:
@@ -242,8 +231,6 @@ public class User {
 
 }
 ```
-
-[Subir](#curso-spring-boot)
 
 ## Definindo a chave primária
 
@@ -269,8 +256,6 @@ public class User {
 }
 ```
 
-[Subir](#curso-spring-boot)
-
 ## Definindo os outros campos
 
 Os campos da tabela pode ser referenciados através de propriedades da classe, veja:
@@ -291,8 +276,6 @@ public class User {
 ```
 
 O que podemos perceber neste momento é que todas as propriedades são do tipo `private`, ou seja, elas são visíveis apenas na classe. Para que possamos deixá-las expostas, usamos a refatoração do STS para gerar gets/sets. Clique com o botão direito do mouse e acesse `Source > Generate Getters and Setters`.
-
-[Subir](#curso-spring-boot)
 
 ## Definindo campos nulos
 
@@ -334,8 +317,6 @@ public class User {
 }
 ```
 
-[Subir](#curso-spring-boot)
-
 # Configurando o acesso ao banco de dados 
 
 Antes de prosseguirmos temos que dizer as configurações de acesso do MySql para o nosso projeto. Isso é feito no arquivo `src/main/resources/application.resources`, incluindo as seguintes entradas:
@@ -355,8 +336,6 @@ A primeira configuração, `spring.jpa.hibernate.ddl-auto` configura qual o comp
 - `create-drop` Cria as tabelas toda vez que a instância é criada e a destroi (drop) quando a instância é fechada.
 
 Através desta configuração podemos criar toda a estrutura de banco de dados partindo do mapeamento JPA das entidades. Pode, a princípio, usar `create` na primeira vez que executarmos a aplicação, e depois alterar para `update` nas próximas execuções.
-
-[Subir](#curso-spring-boot)
 
 # Repository (acesso a dados)
 
