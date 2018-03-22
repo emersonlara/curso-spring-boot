@@ -15,7 +15,7 @@
         - [Definindo a chave primária](#definindo-a-chave-primária)
         - [Definindo os outros campos](#definindo-os-outros-campos)
         - [Definindo campos nulos](#definindo-campos-nulos)
-    - [Repository](#repository)
+    - [Repository (Consultando dados)](#repository-consultando-dados)
 
 <!-- /TOC -->
 
@@ -311,10 +311,37 @@ public class User {
 }
 ```
 
-## Repository
+## Repository (Consultando dados)
 
-No JPA temos o conceito de Repository, que é um "repositório" de ações na classe `@Entity` que podem ser executadas de forma automática. Para a classe `User`, podemos criar uma interface `UserRepository` que irá extender da interface `JPARepository`. Acesse `File > New > Interface`
+No JPA temos o conceito de Repository, que é um "repositório" de ações na classe `@Entity` que podem ser executadas de forma automática. Para a classe `User`, podemos criar uma interface `UserRepository` que irá extender da interface `JPARepository`. Acesse `File > New > Interface` e inclua as seguintes informações:
 
+<p align="center">
+<img src="https://i.imgur.com/30pcm8e.png">
+</p>
+
+Após criada a classe, devemos alterar o tipo genérico <T> da interface, e fornecer o tipo de variável que corresponde a chave da classe `User`. teoricamente alteramos `... extends JpaRepository<T, ID>` para `... extends JpaRepository<User, Long>`, deixando a interface da seguinte forma:
+
+```java
+package br.com.danielschmitz.meuprojeto.model.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.danielschmitz.meuprojeto.model.map.User;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+	
+}
+```
+
+Esta interface pode estar recheada de métodos que tem como objetivo realizar operações na tabela. O exemplo a seguir ilustra como obter um registro na tabela dado o campo id, veja:
+
+```java
+public interface UserRepository extends JpaRepository<User, Long> {
+	
+	public User findOne(Long id);
+	
+}
+```
 
 
   
