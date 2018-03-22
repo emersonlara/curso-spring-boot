@@ -319,7 +319,7 @@ No JPA temos o conceito de Repository, que é um "repositório" de ações na cl
 <img src="https://i.imgur.com/30pcm8e.png">
 </p>
 
-Após criada a classe, devemos alterar o tipo genérico <T> da interface, e fornecer o tipo de variável que corresponde a chave da classe `User`. teoricamente alteramos `... extends JpaRepository<T, ID>` para `... extends JpaRepository<User, Long>`, deixando a interface da seguinte forma:
+Após criada a classe, devemos alterar o tipo genérico <T> da interface, e fornecer o tipo de variável que corresponde a chave da classe `User`. teoricamente alteramos `extends JpaRepository<T, ID>` para `extends JpaRepository<User, Long>`, deixando a interface da seguinte forma:
 
 ```java
 package br.com.danielschmitz.meuprojeto.model.repository;
@@ -337,11 +337,40 @@ Esta interface pode estar recheada de métodos que tem como objetivo realizar op
 
 ```java
 public interface UserRepository extends JpaRepository<User, Long> {
-	
+
 	public User findOne(Long id);
 	
 }
 ```
+
+Agora vamos criar um método que retorna todos os Usuários, da seguinte forma:
+
+```java
+public interface UserRepository extends JpaRepository<User, Long> {
+	
+	public User findOne(Long id);
+	
+	public List<User> findAll();
+	
+}
+```
+
+E que tal criar um método para salvar o usuário? Temos:
+
+```java
+public interface UserRepository extends JpaRepository<User, Long> {
+	
+	public User findOne(Long id);
+	
+	public List<User> findAll();
+	
+	public User save(User user);
+	
+}
+```
+
+É claro que temos operações mais complexas do que estas, mas por enquanto vamos focar no mais simples, até chegarmos ao ponto de podermos testar algo mais complexo.
+
 
 
   
