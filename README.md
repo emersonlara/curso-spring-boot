@@ -1,7 +1,8 @@
-**Curso Spring Boot**
+# Curso Spring Boot
 
 <!-- TOC -->
 
+- [Curso Spring Boot](#curso-spring-boot)
 - [Antes de começar](#antes-de-começar)
 - [Preparando o ambiente](#preparando-o-ambiente)
 - [Banco de dados](#banco-de-dados)
