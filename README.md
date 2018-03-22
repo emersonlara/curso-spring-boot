@@ -16,7 +16,7 @@
     - [Definindo os outros campos](#definindo-os-outros-campos)
     - [Definindo campos nulos](#definindo-campos-nulos)
 - [Configurando o acesso ao banco de dados](#configurando-o-acesso-ao-banco-de-dados)
-- [Repository (Consultando dados)](#repository-consultando-dados)
+- [Repository (acesso a dados)](#repository-acesso-a-dados)
 
 <!-- /TOC -->
 
@@ -332,7 +332,7 @@ A primeira configuração, `spring.jpa.hibernate.ddl-auto` configura qual o comp
 
 Através desta configuração podemos criar toda a estrutura de banco de dados partindo do mapeamento JPA das entidades. Pode, a princípio, usar `create` na primeira vez que executarmos a aplicação, e depois alterar para `update` nas próximas execuções.
 
-# Repository (Consultando dados)
+# Repository (acesso a dados)
 
 No JPA temos o conceito de Repository, que é um "repositório" de ações na classe `@Entity` que podem ser executadas de forma automática. Para a classe `User`, podemos criar uma interface `UserRepository` que irá extender da interface `JPARepository`. Acesse `File > New > Interface` e inclua as seguintes informações:
 
