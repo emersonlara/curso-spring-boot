@@ -1,8 +1,8 @@
-# Treinamento Spring Boot
+# Curso Spring Boot
 
 <!-- TOC -->
 
-- [Treinamento Spring Boot](#treinamento-spring-boot)
+- [Curso Spring Boot](#curso-spring-boot)
     - [Antes de começar](#antes-de-começar)
     - [Preparando o ambiente](#preparando-o-ambiente)
     - [Banco de dados](#banco-de-dados)
@@ -19,11 +19,11 @@
 
 <!-- /TOC -->
 
-Este treinamento visa introduzir o desenvolvimento de aplicações utilizando o Spring Boot.
+Este Curso visa introduzir o desenvolvimento de aplicações utilizando o Spring Boot.
 
 ## Antes de começar 
 
-O Spring Boot possui uma série de funcionalidades distintas que podem ser adicionadas a medida que o projeto ganha forma. O foco neste momento é exibir como criar uma aplicação RESTfull, onde chamamos notoriamente de **backend**. A outra parte, chamada de **frontend**, será vista em outro treinamento. Em suma, o **backend** é responsável em fornecer um serviço web que pode ser chamado através de uma URL e responder o que foi requisitado em JSON.
+O Spring Boot possui uma série de funcionalidades distintas que podem ser adicionadas a medida que o projeto ganha forma. O foco neste momento é exibir como criar uma aplicação RESTfull, onde chamamos notoriamente de **backend**. A outra parte, chamada de **frontend**, será vista em outro Curso. Em suma, o **backend** é responsável em fornecer um serviço web que pode ser chamado através de uma URL e responder o que foi requisitado em JSON.
 
 ## Preparando o ambiente
 
@@ -47,7 +47,7 @@ Para o desenvolvimento apenas estes três itens são necessários. Com tudo isso
 
 ## Banco de dados
 
-Neste treinamento estaremos utilizando o MySql. Pode-se instalar apenas o MySql Server no sistema, sendo acessível através da linha de comando (shell). Para instalar o MySql, acesse [este link](https://dev.mysql.com/downloads/installer/).
+Neste Curso estaremos utilizando o MySql. Pode-se instalar apenas o MySql Server no sistema, sendo acessível através da linha de comando (shell). Para instalar o MySql, acesse [este link](https://dev.mysql.com/downloads/installer/).
 
 Com o MySql instalado, acesse-o através do comando `mysql -u root -p`. Será solicitada a senha que foi cadastrada na instalação, e após digitada a senha, você terá acesso ao console do mysql.
 
@@ -100,12 +100,12 @@ Temos que preencher alguns campos nesta tela, dentre eles:
 - **Type** Deixe `maven` selecionado
 - **Packaging** A forma como o projeto será "empacotado". Deixe o valor padrão, `jar`. Isso significa que o projeto todo será compilado para um único arquivo `.jar`, que poderá ser executado pelo Maven. Existe também a opção `.war` que é uma outra forma de empacotar o projeto, só que para ser usada como um container de algum servidor web, como o Tomcat. 
 - **Java version** A versão do Java. Usamos a 8 como padrão, mas se houver uma superior não é necessário rebaixá-la.
-- **Language** Existem hoje, além do Java, as linguagem Kotlin e Grovvy. Todas as 3 são compiladas no mesmo ByteCode, então você pode escolher a linguagem que estiver mais acostumado. Nesse treinamento estaremos utilizando sempre Java.
+- **Language** Existem hoje, além do Java, as linguagem Kotlin e Grovvy. Todas as 3 são compiladas no mesmo ByteCode, então você pode escolher a linguagem que estiver mais acostumado. Nesse Curso estaremos utilizando sempre Java.
 - **Group** O group é o início da definição do seu package. Um "package" deve ser um namespace "único" do seu projeto, em relação a qualquer projeto Java. Para se obter isso, é aconselhável usar a url do seu site pessoal ou da empresa onde trabalha, de forma invertida. Por exemplo, se o meu site pessoal é `danielschmitz.com.br`, o Group seria `br.com.danielschmitz`. Se a empresa é `www.ufjf.br`, o Group é `br.ufjf`
 - **Artifact** é o nome do projeto que será concatenado ao *Group*. Suponha que o seu projeto se chama "Gestão de Médicos ProDoctor", um bom nome de Artifact seria somente `prodoctor`. 
 - **Version** É a versão do seu software. Deixe com -SNAPSHOT no final para que a versão seja compilada no modo desenvolvimento, com ferramentas extras de Debug, por exemplo.
 - **Description** A descrição do projeto
-- **package** O caminho completo do pacote da sua aplicação. É comum usar o *Group* junto com o *Artifact*. No caso deste treinamento, estamos usando `br.com.danielschmitz.meuprojeto`, então lembre-se de alterar isso de acordo com a sua necessidade. 
+- **package** O caminho completo do pacote da sua aplicação. É comum usar o *Group* junto com o *Artifact*. No caso deste Curso, estamos usando `br.com.danielschmitz.meuprojeto`, então lembre-se de alterar isso de acordo com a sua necessidade. 
 
 Após estas configurações, poderíamos ter a seguinte estrutura:
 
@@ -116,7 +116,7 @@ Após estas configurações, poderíamos ter a seguinte estrutura:
 
 Clique no botão `Next` para seguir para a próxima tela do Wizard.
 
-Nesta tela nós escolhemos as dependências do projeto, isso é, os módulos que compõem o projeto. Para este treinamento, vamos escolher os seguintes módulos:
+Nesta tela nós escolhemos as dependências do projeto, isso é, os módulos que compõem o projeto. Para este Curso, vamos escolher os seguintes módulos:
 
 - **DevTools** Fornece uma série de facilidades, dentre elas a habilidade de reiniciar o servidor instantaneamente após uma modificação no código fonte, e também com live-reload, que atualiza a página web após uma modificação.
 - **JPA** É a camada de persistência do Spring/Java, incluindo o Hibernate por exemplo. Através do JPA vamos criar classes java que são o mapeamento de uma Tabela e realizar operações de inclusão, exclusão e alteração de dados.
@@ -147,7 +147,7 @@ Preencha as seguintes informações:
 
 - **Group** O group é o início da definição do seu package. Um "package" deve ser um namespace "único" do seu projeto, em relação a qualquer projeto Java. Para se obter isso, é aconselhável usar a url do seu site pessoal ou da empresa onde trabalha, de forma invertida. Por exemplo, se o meu site pessoal é `danielschmitz.com.br`, o Group seria `br.com.danielschmitz`. Se a empresa é `www.ufjf.br`, o Group é `br.ufjf`
 - **Artifact** é o nome do projeto que será concatenado ao *Group*. Suponha que o seu projeto se chama "Gestão de Médicos ProDoctor", um bom nome de Artifact seria somente `prodoctor`. 
-- **Dependencies** Usado para adicionar as dependências do projeto. Você pode digitar a dependência e selecionar de uma lista. As dependências para esse treinamento são:
+- **Dependencies** Usado para adicionar as dependências do projeto. Você pode digitar a dependência e selecionar de uma lista. As dependências para esse Curso são:
     - **DevTools** Fornece uma série de facilidades, dentre elas a habilidade de reiniciar o servidor instantaneamente após uma modificação no código fonte, e também com live-reload, que atualiza a página web após uma modificação.
     - **JPA** É a camada de persistência do Spring/Java, incluindo o Hibernate por exemplo. Através do JPA vamos criar classes java que são o mapeamento de uma Tabela e realizar operações de inclusão, exclusão e alteração de dados.
     - **Web** Provê todas as funcionalidades Web junto com o servidor TomCat, permitindo que se possa criar rotas RESTfull de forma fácil através de *anotations*.
