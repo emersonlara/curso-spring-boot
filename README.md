@@ -1,7 +1,7 @@
 # Curso Spring Boot
 
-<div style="position:fixed; top: 20px; left:20px;">
-<a href="#curso-spring-boot">Sumário</a>
+<div style="position:fixed; right: 5px; bottom: 5px;">
+<a href="#curso-spring-boot"><img src="https://cdn3.iconfinder.com/data/icons/gray-toolbar-5/512/items-512.png" width="24" height="24"></a>
 </div>
 
 <!-- TOC -->
