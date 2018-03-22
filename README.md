@@ -1,6 +1,6 @@
 # Curso Spring Boot
 
-<div style="position:fixed; right: 5px; bottom: 5px;">
+<div style="position:fixed; left: 5px; top: 5px;">
 <a href="#curso-spring-boot"><img src="https://cdn3.iconfinder.com/data/icons/gray-toolbar-5/512/items-512.png" width="24" height="24"></a>
 </div>
 
