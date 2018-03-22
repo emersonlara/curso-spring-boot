@@ -15,6 +15,7 @@
         - [Definindo a chave primária](#definindo-a-chave-primária)
         - [Definindo os outros campos](#definindo-os-outros-campos)
         - [Definindo campos nulos](#definindo-campos-nulos)
+    - [Configurando o acesso ao banco de dados](#configurando-o-acesso-ao-banco-de-dados)
     - [Repository (Consultando dados)](#repository-consultando-dados)
 
 <!-- /TOC -->
@@ -310,6 +311,28 @@ public class User {
 
 }
 ```
+
+## Configurando o acesso ao banco de dados 
+
+Antes de prosseguirmos temos que dizer as configurações de acesso do MySql para o nosso projeto. Isso é feito no arquivo `src/main/resources/application.resources`, incluindo as seguintes entradas:
+
+```txt
+spring.jpa.hibernate.ddl-auto=none
+spring.datasource.url=jdbc:mysql://localhost:3306/springboot
+spring.datasource.username=root
+spring.datasource.password=123456
+```
+
+A primeira configuração, `spring.jpa.hibernate.ddl-auto` configura qual o comportamento do JPA em relação ao banco de dados. Temos as seguintes opções:
+
+- `none` Não há alterações na estrutura das tabelas do banco de dados
+- `update` Há alterações nas tabelas de acordo com as alterações nas entidades
+- `create` Cria as tabelas toda vez que a instância é criada, mas nao a destroi quando a instância é fechada.
+- `create-drop` Cria as tabelas toda vez que a instância é criada e a destroi (drop) quando a instância é fechada.
+
+Através desta configuração podemos criar toda a estrutura de banco de dados partindo do mapeamento JPA das entidades. Pode, a princípio, usar `create` na primeira vez que executarmos a aplicação, e depois alterar para `update` nas próximas execuções.
+
+
 
 ## Repository (Consultando dados)
 
