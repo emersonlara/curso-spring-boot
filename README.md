@@ -1,5 +1,6 @@
 # Curso Spring Boot
 
+<nav>
 <!-- TOC -->
 
 - [Curso Spring Boot](#curso-spring-boot)
@@ -19,10 +20,11 @@
 - [Repository (acesso a dados)](#repository-acesso-a-dados)
 
 <!-- /TOC -->
+</nav>
 
 Este Curso visa introduzir o desenvolvimento de aplicações utilizando o Spring Boot.
 
-# Antes de começar 
+# Antes de começar
 
 O Spring Boot possui uma série de funcionalidades distintas que podem ser adicionadas a medida que o projeto ganha forma. O foco neste momento é exibir como criar uma aplicação RESTfull, onde chamamos notoriamente de **backend**. A outra parte, chamada de **frontend**, será vista em outro Curso. Em suma, o **backend** é responsável em fornecer um serviço web que pode ser chamado através de uma URL e responder o que foi requisitado em JSON.
 
@@ -390,13 +392,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 }
 ```
 
-É claro que temos operações mais complexas do que estas, mas por enquanto vamos focar no mais simples, até chegarmos ao ponto de podermos testar algo mais complexo.
-
-
-
-  
-
-
+É claro que temos operações mais complexas do que estas, mas por enquanto vamos focar no mais simples.
 
 
 
