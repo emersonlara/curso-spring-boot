@@ -1,7 +1,7 @@
 # Curso Spring Boot
 
 <div style="position:fixed; top: 20px; left:20px;">
-[Subir](#curso-spring-boot)
+<a href="#curso-spring-boot">Sumário</a>
 </div>
 
 <!-- TOC -->
