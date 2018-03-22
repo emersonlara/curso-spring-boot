@@ -1,32 +1,31 @@
-# Curso Spring Boot
+**Curso Spring Boot**
 
 <!-- TOC -->
 
-- [Curso Spring Boot](#curso-spring-boot)
-    - [Antes de começar](#antes-de-começar)
-    - [Preparando o ambiente](#preparando-o-ambiente)
-    - [Banco de dados](#banco-de-dados)
-    - [Criando o projeto](#criando-o-projeto)
-        - [Usando o STS](#usando-o-sts)
-        - [Usando o Spring Initializr](#usando-o-spring-initializr)
-    - [Mapeamento](#mapeamento)
-        - [Anotando a entidade](#anotando-a-entidade)
-        - [Definindo o nome da tabela](#definindo-o-nome-da-tabela)
-        - [Definindo a chave primária](#definindo-a-chave-primária)
-        - [Definindo os outros campos](#definindo-os-outros-campos)
-        - [Definindo campos nulos](#definindo-campos-nulos)
-    - [Configurando o acesso ao banco de dados](#configurando-o-acesso-ao-banco-de-dados)
-    - [Repository (Consultando dados)](#repository-consultando-dados)
+- [Antes de começar](#antes-de-começar)
+- [Preparando o ambiente](#preparando-o-ambiente)
+- [Banco de dados](#banco-de-dados)
+- [Criando o projeto](#criando-o-projeto)
+    - [Usando o STS](#usando-o-sts)
+    - [Usando o Spring Initializr](#usando-o-spring-initializr)
+- [Mapeamento](#mapeamento)
+    - [Anotando a entidade](#anotando-a-entidade)
+    - [Definindo o nome da tabela](#definindo-o-nome-da-tabela)
+    - [Definindo a chave primária](#definindo-a-chave-primária)
+    - [Definindo os outros campos](#definindo-os-outros-campos)
+    - [Definindo campos nulos](#definindo-campos-nulos)
+- [Configurando o acesso ao banco de dados](#configurando-o-acesso-ao-banco-de-dados)
+- [Repository (Consultando dados)](#repository-consultando-dados)
 
 <!-- /TOC -->
 
 Este Curso visa introduzir o desenvolvimento de aplicações utilizando o Spring Boot.
 
-## Antes de começar 
+# Antes de começar 
 
 O Spring Boot possui uma série de funcionalidades distintas que podem ser adicionadas a medida que o projeto ganha forma. O foco neste momento é exibir como criar uma aplicação RESTfull, onde chamamos notoriamente de **backend**. A outra parte, chamada de **frontend**, será vista em outro Curso. Em suma, o **backend** é responsável em fornecer um serviço web que pode ser chamado através de uma URL e responder o que foi requisitado em JSON.
 
-## Preparando o ambiente
+# Preparando o ambiente
 
 O Spring Boot necessita dos seguintes itens:
 
@@ -46,7 +45,7 @@ O Spring Boot necessita dos seguintes itens:
 
 Para o desenvolvimento apenas estes três itens são necessários. Com tudo isso instalado, podemos criar a nossa primeira aplicação.
 
-## Banco de dados
+# Banco de dados
 
 Neste Curso estaremos utilizando o MySql. Pode-se instalar apenas o MySql Server no sistema, sendo acessível através da linha de comando (shell). Para instalar o MySql, acesse [este link](https://dev.mysql.com/downloads/installer/).
 
@@ -83,11 +82,11 @@ Pode-se verificar a estrutura de uma tabela com o comando `desc Users;`
 </p>
 
 
-## Criando o projeto
+# Criando o projeto
 
 Existem duas formas corretas de se criar um projeto Spring Boot. Você pode usar o Wizard do STS, ou então acessando o site [Spring Initializr](https://start.spring.io/).
 
-### Usando o STS
+## Usando o STS
 
 Com o STS aberto, navegue até `File > New > Spring Starter Project`. Surge um Wizard, com a seguinte tela inicial:
 
@@ -136,7 +135,7 @@ Clique no botão `Finish` para criar o projeto. Após a criação do projeto, o 
 <img src="https://i.imgur.com/tUPZDyc.png">
 </p>
 
-### Usando o Spring Initializr
+## Usando o Spring Initializr
 
 Acesse o site [Spring Initializr](https://start.spring.io/) para ter acesso a um formulário semelhante a figura a seguir:
 
@@ -162,7 +161,7 @@ Após adicionar as dependências, clique no botão `Generate Project` para reali
 
 Descompacte o arquivo `.zip` e use a opção `File > Open Project From File System` do STS. 
 
-## Mapeamento
+# Mapeamento
 
 Uma das funcionalidades básicas do Java, em conjunto com o JPA e o Hibernate, é mapear uma tabela do banco de dados, gerando uma classe Java que representa a tabela. 
 
@@ -184,7 +183,7 @@ public class User {
 }
 ```
 
-### Anotando a entidade
+## Anotando a entidade
 
 Agora começamos a fazer algo chamado de "anotar a classe". No Java, `annotations` são usados frequentemente para configurar algo. É melhor usar uma anotação do que um arquivo xml. Nossa primeira anotação é dizer que essa classe é uma entidade JPA, então temos:
 
@@ -210,7 +209,7 @@ public class User {
 }
 ```
 
-### Definindo o nome da tabela
+## Definindo o nome da tabela
 
 Perceba que o nome da classe é diferente do nome da tabela, então devemos adicionar uma anotação para dizer qual é o nome da tabela. Neste caso usamos o `@Table`, veja:
 
@@ -227,7 +226,7 @@ public class User {
 }
 ```
 
-### Definindo a chave primária
+## Definindo a chave primária
 
 A chave primária é definida pela anotação `@Id`, e também definimos uma estratégia para auto incremento através da anotação `@GeneratedValue`, veja:
 
@@ -251,7 +250,7 @@ public class User {
 }
 ```
 
-### Definindo os outros campos
+## Definindo os outros campos
 
 Os campos da tabela pode ser referenciados através de propriedades da classe, veja:
 
@@ -272,7 +271,7 @@ public class User {
 
 O que podemos perceber neste momento é que todas as propriedades são do tipo `private`, ou seja, elas são visíveis apenas na classe. Para que possamos deixá-las expostas, usamos a refatoração do STS para gerar gets/sets. Clique com o botão direito do mouse e acesse `Source > Generate Getters and Setters`.
 
-### Definindo campos nulos
+## Definindo campos nulos
 
 A tabela Users possui alguns campos que não podem ser nulos. Para definir este comportamento no mapeamento, usamos a anotação `@NotBlank`.
 
@@ -312,7 +311,7 @@ public class User {
 }
 ```
 
-## Configurando o acesso ao banco de dados 
+# Configurando o acesso ao banco de dados 
 
 Antes de prosseguirmos temos que dizer as configurações de acesso do MySql para o nosso projeto. Isso é feito no arquivo `src/main/resources/application.resources`, incluindo as seguintes entradas:
 
@@ -332,9 +331,7 @@ A primeira configuração, `spring.jpa.hibernate.ddl-auto` configura qual o comp
 
 Através desta configuração podemos criar toda a estrutura de banco de dados partindo do mapeamento JPA das entidades. Pode, a princípio, usar `create` na primeira vez que executarmos a aplicação, e depois alterar para `update` nas próximas execuções.
 
-
-
-## Repository (Consultando dados)
+# Repository (Consultando dados)
 
 No JPA temos o conceito de Repository, que é um "repositório" de ações na classe `@Entity` que podem ser executadas de forma automática. Para a classe `User`, podemos criar uma interface `UserRepository` que irá extender da interface `JPARepository`. Acesse `File > New > Interface` e inclua as seguintes informações:
 
