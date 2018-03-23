@@ -1,0 +1,197 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2018-03-23T04:12:11.243Z",
+	"__export_source": "insomnia.desktop.app:v5.14.9",
+	"resources": [
+		{
+			"_id": "wrk_e10c70eb309f4db5810b6c6590b5a451",
+			"created": 1521767916581,
+			"description": "",
+			"modified": 1521767916581,
+			"name": "Insomnia",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_f4c892aa86d4437f8905d36fe3852b42",
+			"color": null,
+			"created": 1521767916612,
+			"data": {
+				"base_url": "http://localhost:8080"
+			},
+			"isPrivate": false,
+			"modified": 1521775123239,
+			"name": "New Environment",
+			"parentId": "wrk_e10c70eb309f4db5810b6c6590b5a451",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_8b4a88c3065c424e9af3212a97928f3c",
+			"cookies": [],
+			"created": 1521767916690,
+			"modified": 1521767916690,
+			"name": "Default Jar",
+			"parentId": "wrk_e10c70eb309f4db5810b6c6590b5a451",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_3711a8046061473f9420acf84f6ffb41",
+			"created": 1521768253333,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1521768253333,
+			"modified": 1521768253333,
+			"name": "User",
+			"parentId": "wrk_e10c70eb309f4db5810b6c6590b5a451",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_1bd3507d55214d96880e4a5e3d9aa7b3",
+			"authentication": {},
+			"body": {},
+			"created": 1521778053748,
+			"description": "",
+			"headers": [],
+			"metaSortKey": -1521778053748,
+			"method": "GET",
+			"modified": 1521778061366,
+			"name": "Hello World",
+			"parameters": [],
+			"parentId": "wrk_e10c70eb309f4db5810b6c6590b5a451",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}/",
+			"_type": "request"
+		},
+		{
+			"_id": "req_1dcb26abb6ae4642b1450c99721a9fc9",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\n\t\t\"firstname\": \"Rafael\",\n\t\"lastname\": \"gomes\",\n\t\"email\": \"rafaelgomes@gmail.com\",\n\t\"reg_date\": \"2018-03-23T03:40:23\"\n}"
+			},
+			"created": 1521768453273,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fae5b18ec3974fb195268c02091426da",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"metaSortKey": -1521768453273,
+			"method": "POST",
+			"modified": 1521776143695,
+			"name": "Save User",
+			"parameters": [],
+			"parentId": "fld_3711a8046061473f9420acf84f6ffb41",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}/user",
+			"_type": "request"
+		},
+		{
+			"_id": "req_184d4f891cd24b089bb1946ae46d0357",
+			"authentication": {},
+			"body": {},
+			"created": 1521773483857,
+			"description": "",
+			"headers": [],
+			"metaSortKey": -1521773483857,
+			"method": "GET",
+			"modified": 1521773497428,
+			"name": "Find All Users",
+			"parameters": [],
+			"parentId": "fld_3711a8046061473f9420acf84f6ffb41",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}/users",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7b08e3c0c9514582be24a54e1cdf949c",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"email\":\"danieljfa@gmail.coms\"\n}"
+			},
+			"created": 1521773992803,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_e6785efeab1645c5aafd452f4071b2a5",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"metaSortKey": -1521773992803,
+			"method": "GET",
+			"modified": 1521775112504,
+			"name": "Get User By Email",
+			"parameters": [],
+			"parentId": "fld_3711a8046061473f9420acf84f6ffb41",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}/user/getByEmail",
+			"_type": "request"
+		},
+		{
+			"_id": "req_4d29d248a8974e9a8045b8f80215d1ca",
+			"authentication": {},
+			"body": {},
+			"created": 1521776086806,
+			"description": "",
+			"headers": [],
+			"metaSortKey": -1521776086806,
+			"method": "GET",
+			"modified": 1521776101782,
+			"name": "Obter por nome e sobrenome",
+			"parameters": [],
+			"parentId": "fld_3711a8046061473f9420acf84f6ffb41",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}/user/get/daniel/schmitz",
+			"_type": "request"
+		},
+		{
+			"_id": "req_adec216cea3242faa2789c2b84ce4a6f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "\t{\n\t\t\"id\": 1,\n\t\t\"firstname\": \"daniel\",\n\t\t\"lastname\": \"schmitz\",\n\t\t\"email\": \"danieljfa@gmail.com\",\n\t\t\"reg_date\": \"2018-03-23T01:40:23.000+0000\"\n\t}"
+			},
+			"created": 1521776160335,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fae5b18ec3974fb195268c02091426da",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"metaSortKey": -1521768453223,
+			"method": "POST",
+			"modified": 1521776169302,
+			"name": "Edit User",
+			"parameters": [],
+			"parentId": "fld_3711a8046061473f9420acf84f6ffb41",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base_url  }}/user",
+			"_type": "request"
+		}
+	]
+}
