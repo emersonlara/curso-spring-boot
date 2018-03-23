@@ -27,6 +27,7 @@
 - [Realizando mais operações na base de dados](#realizando-mais-operações-na-base-de-dados)
     - [Obtendo todos os Users](#obtendo-todos-os-users)
     - [Obtendo um usuário dado um email](#obtendo-um-usuário-dado-um-email)
+    - [Obtendo um usuário dado o nome e sobrenome](#obtendo-um-usuário-dado-o-nome-e-sobrenome)
 
 <!-- /TOC -->
 
@@ -701,3 +702,48 @@ public class UserService {
 }
 
 ```
+
+## Obtendo um usuário dado o nome e sobrenome
+
+Neste exemplo vamos usar o método GET e repassar duas variáveis na url, de forma que possamos realizar uma consulta dupla na tabela. Primeio, criamos o método no Repository:
+
+```java
+package br.com.danielschmitz.meuprojeto.model.repository;
+
+//imports...
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+	
+	//métodos
+
+	public User findByFirstnameAndLastname(String firstname, String lastname);
+	
+}
+
+```
+
+Após criar o método, vamos ao service:
+
+```java
+package br.com.danielschmitz.meuprojeto.services;
+
+// imports...
+
+@RestController
+public class UserService {
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	//métodos....
+
+	@GetMapping("/user/get/{firstname}/{lastname}")
+	public User getByFirstnameAndLastname (@PathVariable String firstname, @PathVariable String lastname) throws Exception{
+		User user = userRepository.findByFirstnameAndLastname(firstname,lastname);
+		if (user == null)
+			throw new Exception("Usuário não encontrado");
+		return user;
+	}
+}
+```
+Neste mapeamento, usamos `{firstname}` e `{lastname}` como variáveis na url, e usamos a anotação `@PathVariable` para relacionar as duas variáveis. Depois, usamos o repository para realizar a consulta.
