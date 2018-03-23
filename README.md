@@ -600,8 +600,25 @@ Esse erro revela que o formato da data está inválido. Como o campo reg_date é
 <img src="https://i.imgur.com/lH8TlsV.png">
 </p>
 
+Perceba que o JSON de retorno possui o atributo "id", confirmando que o Spring Boot persistiu a informação no banco de dados:
 
+<p align="center">
+<img src="https://i.imgur.com/yaeX5Xx.png">
+</p>
+ 
+Se você clicar novamente em "Send", outro registro será criado. Se o JSON de envio contiver a chave primária, ele realizará um update. 
 
+<p align="center">
+<img src="https://i.imgur.com/boTrJPM.png">
+</p>
+
+Para testar, experimente salvar um objeto json sem o campo "firstname":
+
+<p align="center">
+<img src="https://i.imgur.com/q06qsJF.png">
+</p>
+
+A resposta é a esperada, que o campo nao pode ser nulo, graças ao `@NotBlank` do firstname.
 
 
 
