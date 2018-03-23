@@ -24,6 +24,9 @@
 - [Criando Services](#criando-services)
     - [Salvando um User](#salvando-um-user)
 - [Testando a aplicação com Insomnia](#testando-a-aplicação-com-insomnia)
+- [Realizando mais operações na base de dados](#realizando-mais-operações-na-base-de-dados)
+    - [Obtendo todos os Users](#obtendo-todos-os-users)
+    - [Obtendo um usuário dado um email](#obtendo-um-usuário-dado-um-email)
 
 <!-- /TOC -->
 
@@ -569,7 +572,6 @@ Adicione `User` no nome da pasta. Agora clique na pasta `User` e em `New Request
 <img src="https://i.imgur.com/KoQcTZR.png">
 </p>
 
-
 No nome da request, insira `Save User`, selecione o método `POST` e o formato `JSON`:
 
 <p align="center">
@@ -620,9 +622,82 @@ Para testar, experimente salvar um objeto json sem o campo "firstname":
 
 A resposta é a esperada, que o campo nao pode ser nulo, graças ao `@NotBlank` do firstname.
 
+# Realizando mais operações na base de dados
 
+## Obtendo todos os Users
 
+Agora que conseguimos realizar uma operação na base de dados, as outras poderão ser realizadas com mais facilidade. Por exemplo, para obter todos os usuários do banco, Adicionamos um método no Service da seguinte forma:
 
+```java
+package br.com.danielschmitz.meuprojeto.services;
 
+//imports....
 
+@RestController
+public class UserService {
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@GetMapping("/users")
+	public List<User> findAll(){
+		return userRepository.findAll();
+	}
+	
+	@PostMapping("/user")
+	public User save(@RequestBody @Valid User user) {
+		return userRepository.save(user);
+	}
+	
+}
+```
  
+O método `findAll` está exposto para a API através de um método GET /users, e pode ser testado de acordo com a figura a seguir:
+
+<p align="center">
+<img src="https://i.imgur.com/iuyetKD.png">
+</p>
+
+## Obtendo um usuário dado um email
+
+Para obter um usuário pelo email, podemos usar o método `findByEmail` no Repository. Este é um método automático do JPA, dado o atributo `email` no mapeamento. 
+
+```java
+package br.com.danielschmitz.meuprojeto.model.repository;
+
+//imports....
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+	
+	public Optional<User> findById(Integer id);
+	public List<User> findAll();
+	public User save(User user);
+	public User findByEmail(String email);
+	
+}
+```
+
+Após criar o método no Repository, vamos mapeaer a API no Service:
+
+```java
+package br.com.danielschmitz.meuprojeto.services;
+
+// imports...
+
+@RestController
+public class UserService {
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@GetMapping("/user/getByEmail")
+	public User getByEmail (@RequestBody User user) throws Exception {
+		User u = userRepository.findByEmail(user.getEmail());
+		if (u == null)
+			throw new Exception("Usuário não encontrado");
+		return u;
+	}
+	
+}
+
+```
