@@ -23,6 +23,7 @@
 - [Repository (acesso a dados)](#repository-acesso-a-dados)
 - [Criando Services](#criando-services)
     - [Salvando um User](#salvando-um-user)
+- [Testando a aplicação com Insomnia](#testando-a-aplicação-com-insomnia)
 
 <!-- /TOC -->
 
@@ -281,7 +282,7 @@ O que podemos perceber neste momento é que todas as propriedades são do tipo `
 
 ## Definindo campos nulos
 
-A tabela Users possui alguns campos que não podem ser nulos. Para definir este comportamento no mapeamento, usamos a anotação `@NotBlank`.
+A tabela Users possui alguns campos que não podem ser nulos. Para definir este comportamento no mapeamento, usamos a anotação `@NotBlank` para Strings e `@NotNull` para Date.
 
 ```java
 package br.com.danielschmitz.meuprojeto.model.map;
@@ -311,7 +312,7 @@ public class User {
 	
 	private String email;
 	
-	@NotBlank
+	@NotNull
 	private Date reg_date;
 
     //get & set...
@@ -524,6 +525,80 @@ Vamos fazer aqui um resumo das annotations vistas:
 | @Autowired | Injeta uma classe na variável anotada
 | @PostMapping | Expõe o método a uma Requisição POST |
 | @RequestBody | Define que a variável pode ser repassada via Json |
+
+
+# Testando a aplicação com Insomnia
+
+Agora que criamos um método que está exposto a API Rest, através de uma requisição POST para "/user", podemos finalmente testar o Spring Boot. Com a classe `MeuprojetoApplication` aberta, clique no botão Run (Seta verda) e aguarde o Spring Boot iniciar. É isso mesmo, não é necessário configurar nenhum servidor, o Spring Boot irá cuidar de tudo. 
+
+ <p align="center">
+ <img src="https://i.imgur.com/BWmzGIG.png">
+ </p>
+ 
+ Após iniciar, acesse provisoriamente o endereço: http://localhost:8080/. Aqui teremos um erro, o que é natural já que não configuramos uma rota padrão... Vamos nos concentrar, a princípio, em salvar o User. Para enviar uma requisição POST ao Spring, vamos usar um programa chamado **insomnia**, que pode ser baixado aqui: https://insomnia.rest/download
+
+Esse programa pode ser usado sempre que você desejar realizar testes em APIs. Após instalar, abra-o aperte Ctrl+E para abrir a janela de *Enviroment*. Você verá a tela "Manage Environments" semelhante a figura a seguir:
+
+<p align="center">
+<img src="https://i.imgur.com/vt3IpKJ.png">
+</p>
+
+Adicione a seguinte informação ao Environment:
+
+```json
+{
+	"base_url": "http://localhost:8080/"
+}
+```
+
+A configuração fica semelhante a:
+
+<p align="center">
+<img src="https://i.imgur.com/fgDenvW.png">
+</p>
+
+Clique no botão *Done*, e agora vamos adicionar uma requisição. Clique no botão `+` e depois em `New Folder`.
+
+<p align="center">
+<img src="https://i.imgur.com/3JNs1rq.png">
+</p>
+
+Adicione `User` no nome da pasta. Agora clique na pasta `User` e em `New Request`. 
+
+<p align="center">
+<img src="https://i.imgur.com/KoQcTZR.png">
+</p>
+
+
+No nome da request, insira `Save User`, selecione o método `POST` e o formato `JSON`:
+
+<p align="center">
+<img src="https://i.imgur.com/5Mg5VC2.png">
+</p>
+
+Com o `Save User`criado, é hora de adicionar a URL. Aqui usamos o Environment junto com o `base_url`, para não termos que ficar digitando "localhost:8080" a todo momento:
+
+<p align="center">
+<img src="https://i.imgur.com/cCoui6n.png">
+</p>
+
+Se vamos fazer um `POST` para `/user`, é necessário repassar um objeto em JSON que corresponde a um registro na tabela User:
+
+<p align="center">
+<img src="https://i.imgur.com/4KxJzkW.png">
+</p>
+
+A princípio passamos este objeto. Para testar, clique no botão `Send`, conforme o detalhe.  Teremos um erro conforme a mensagem a seguir:
+
+<p align="center">
+<img src="https://i.imgur.com/TBXEKoI.png">
+</p>
+
+Esse erro revela que o formato da data está inválido. Como o campo reg_date é Date, precisamos passar um formato de Data válido, como por exemplo `2018-03-23T01:40:23`. Após corrigir esta informação, clique novamente em `Send` para obter o seguinte resultado:
+
+<p align="center">
+<img src="https://i.imgur.com/lH8TlsV.png">
+</p>
 
 
 
