@@ -21,6 +21,8 @@
     - [Definindo campos nulos](#definindo-campos-nulos)
 - [Configurando o acesso ao banco de dados](#configurando-o-acesso-ao-banco-de-dados)
 - [Repository (acesso a dados)](#repository-acesso-a-dados)
+- [Criando Services](#criando-services)
+    - [Salvando um User](#salvando-um-user)
 
 <!-- /TOC -->
 
@@ -251,7 +253,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 	
 }
 ```
@@ -265,7 +267,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 
 	private String firstname;
 	private String lastname;
@@ -299,7 +301,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 	
 	@NotBlank
 	private String firstname;
@@ -345,7 +347,7 @@ No JPA temos o conceito de Repository, que é um "repositório" de ações na cl
 <img src="https://i.imgur.com/30pcm8e.png">
 </p>
 
-Após criada a classe, devemos alterar o tipo genérico <T> da interface, e fornecer o tipo de variável que corresponde a chave da classe `User`. teoricamente alteramos `extends JpaRepository<T, ID>` para `extends JpaRepository<User, Long>`, deixando a interface da seguinte forma:
+Após criada a classe, devemos alterar o tipo genérico <T> da interface, e fornecer o tipo de variável que corresponde a chave da classe `User`. teoricamente alteramos `extends JpaRepository<T, ID>` para `extends JpaRepository<User, Integer>`, deixando a interface da seguinte forma:
 
 ```java
 package br.com.danielschmitz.meuprojeto.model.repository;
@@ -354,7 +356,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.danielschmitz.meuprojeto.model.map.User;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 	
 }
 ```
@@ -362,9 +364,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 Esta interface pode estar recheada de métodos que tem como objetivo realizar operações na tabela. O exemplo a seguir ilustra como obter um registro na tabela dado o campo id, veja:
 
 ```java
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
-	public User findOne(Long id);
+	public Optional<User> findById(Integer id);
 	
 }
 ```
@@ -372,9 +374,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 Agora vamos criar um método que retorna todos os Usuários, da seguinte forma:
 
 ```java
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 	
-	public User findOne(Long id);
+	public Optional<User> findById(Integer id);
 	
 	public List<User> findAll();
 	
@@ -384,9 +386,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 E que tal criar um método para salvar o usuário? Temos:
 
 ```java
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 	
-	public User findOne(Long id);
+	public Optional<User> findById(Integer id);
 	
 	public List<User> findAll();
 	
@@ -396,6 +398,136 @@ public interface UserRepository extends JpaRepository<User, Long> {
 ```
 
 É claro que temos operações mais complexas do que estas, mas por enquanto vamos focar no mais simples.
+
+
+# Criando Services
+
+O conceito de "Service" definido nesse curso é aplicado a uma Classe que possui métodos que serão expostos a uma API RESTFull. No Java, esse conceito possui outros nomes, como Controller ou Resource. Vamos manter o nome Service por uma questão simploria no entendimento.
+
+Crie a classe `UserService` da seguinte forma:
+
+<p align="center">
+<img src="https://i.imgur.com/RUOako4.png">
+</p>
+
+Após criar a classe, vamos "expô-la" ao REST usando *annotations*, da seguinte forma:
+
+```java
+package br.com.danielschmitz.meuprojeto.services;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class UserService {
+	
+}
+```
+
+Usamos o annotation `@RestController` para marcar a classe como REST. Ao criar o respository, criamos o método "findAll", então é natural expor este método a API REST.
+
+## Salvando um User
+
+Nossa primeira tarefa é criar uma API Rest para salvar o User. Por convenção, um método POST é usado quando deseja-se salvar um registro. Então, temos o uso do `@PostMapping` para esta tarefa. 
+
+```java
+package br.com.danielschmitz.meuprojeto.services;
+
+@RestController
+public class UserService {
+	
+	@PostMapping("/user")
+	public User save( User user) {
+
+	}
+	
+}
+```
+
+Este é um exemplo mínimo, que ainda não funciona devido a alguns detalhes. Primeio, precisamos usar o Repository que criamos que seja capaz de lidar com a tabela Users. Vamos usar uma anotação chamada `@Autowired` que irá instanciar automaticamente o Repository na nossa classe (chamamos isso de injeção de dependência), veja:
+
+```java
+@RestController
+public class UserService {
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@PostMapping("/user")
+	public User save(User user) {
+		
+	}
+	
+}
+``` 
+
+Agora podemos usar o Repository para salvar o User, veja:
+
+```java
+@RestController
+public class UserService {
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@PostMapping("/user")
+	public User save(User user) {
+		return userRepository.save(user);
+	}
+	
+}
+```
+
+A classe está quase pronta! O último detalhe é em relação ao `save(User user)` onde devemos informar o Spring Boot a forma como esses dados serão repassados. Como estamos criando uma API, é natural configurar que os dados virão através de JSON. Para isso, usamos a anotação `@RequestBody`, e juntamente com a anotação "@Valid" para já validar os dados que estão sendo passados para este método, veja:
+
+```java
+@PostMapping("/user")
+public User save(@RequestBody @Valid User user) {
+	return userRepository.save(user);
+}
+```
+
+Com isso finalizamos a classe. O código completo dela é:
+
+```java
+package br.com.danielschmitz.meuprojeto.services;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.danielschmitz.meuprojeto.model.map.User;
+import br.com.danielschmitz.meuprojeto.model.repository.UserRepository;
+
+@RestController
+public class UserService {
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@PostMapping("/user")
+	public User save(@RequestBody @Valid User user) {
+		return userRepository.save(user);
+	}
+	
+}
+```
+
+Vamos fazer aqui um resumo das annotations vistas:
+
+| Anotation | Descrição |
+|-----------|-----------|
+| @RestController | Expõe uma classe como se fosse uma API Rest |
+| @Autowired | Injeta uma classe na variável anotada
+| @PostMapping | Expõe o método a uma Requisição POST |
+| @RequestBody | Define que a variável pode ser repassada via Json |
+
+
+
+
 
 
 
