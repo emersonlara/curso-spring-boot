@@ -1,9 +1,5 @@
 # Minu curso Spring Boot
 
-<div style="position:fixed; right: 5px; top: 5px;">
-<a href="#curso-spring-boot"><img src="https://cdn3.iconfinder.com/data/icons/gray-toolbar-5/512/items-512.png" width="24" height="24"></a>
-</div>
-
 <!-- TOC -->
 
 - [Mini curso Spring Boot](#curso-spring-boot)
@@ -28,7 +24,7 @@
     - [Obtendo todos os Users](#obtendo-todos-os-users)
     - [Obtendo um usuário dado um email](#obtendo-um-usuário-dado-um-email)
     - [Obtendo um usuário dado o nome e sobrenome](#obtendo-um-usuário-dado-o-nome-e-sobrenome)
-
+- [Comentários](#comentários)
 <!-- /TOC -->
 
 
@@ -749,7 +745,7 @@ public class UserService {
 Neste mapeamento, usamos `{firstname}` e `{lastname}` como variáveis na url, e usamos a anotação `@PathVariable` para relacionar as duas variáveis. Depois, usamos o repository para realizar a consulta.
 
 
-
+# Comentários
 
 <div id="disqus_thread"></div>
 <script>
