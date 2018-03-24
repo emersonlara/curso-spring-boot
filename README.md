@@ -749,7 +749,7 @@ public class UserService {
 Neste mapeamento, usamos `{firstname}` e `{lastname}` como variáveis na url, e usamos a anotação `@PathVariable` para relacionar as duas variáveis. Depois, usamos o repository para realizar a consulta.
 
 
-# Comentários
+
 
 <div id="disqus_thread"></div>
 <script>
