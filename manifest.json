@@ -5,7 +5,7 @@
     "scope": "/curso-spring-boot/",
     "display": "standalone",
     "start_url": "https://danielschmitz.com.br/curso-spring-boot/",
-    "short_name": "spring-boot",
+    "short_name": "Curso Spring Boot",
     "theme_color": "#157878",
     "description": "Um curso gratuito sobre o Spring Boot incluindo os temas mais importantes do Framework. Por Daniel Schmitz www.danielschmitz.com.br",
     "orientation": "any",
